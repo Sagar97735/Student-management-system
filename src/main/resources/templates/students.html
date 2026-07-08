@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        table{
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th,td{
+            border: 1px solid black;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th{
+            background-color: black;
+            color: white;
+        }
+
+        .btn{
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .add{
+            background-color: green;
+        }
+
+        .edit{
+            background-color: orange;
+        }
+
+        .delete{
+            background-color: red;
+        }
+
+        .top{
+            width: 80%;
+            margin: 20px auto;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Students List</h1>
+
+    <div class="top">
+        <a href="/students/new" class="btn add">Add Student</a>
+    </div>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="student : ${students}">
+
+            <td th:text="${student.id}"></td>
+
+            <td th:text="${student.firstname}"></td>
+
+            <td th:text="${student.lastname}"></td>
+
+            <td th:text="${student.email}"></td>
+
+            <td>
+                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn edit">Update</a>
+
+                <a th:href="@{/students/{id}(id=${student.id})}" class="btn delete">Delete</a>
+            </td>
+
+        </tr>
+
+    </table>
+
+</body>
+
+</html>
